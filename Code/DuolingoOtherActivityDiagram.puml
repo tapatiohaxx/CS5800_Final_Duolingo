@@ -1,0 +1,19 @@
+@startuml OtherFeaturesActivity
+start
+:User opens "Other Features";
+if (Feature selected is Gem Store?) then (Yes)
+    :Display gem packages;
+    :User selects a package;
+    :Process payment;
+    :Update user's gems;
+if (Feature selected is Leaderboard?) then (yes)
+    :Load leaderboard data;
+    :Display top users;
+    :Allow user to select a profile;
+    :Display selected user's profile;
+if (Feature selected is User Profile?) then (yes))
+    :Load user's profile data;
+    :Display user's profile details;
+endif
+stop
+@enduml

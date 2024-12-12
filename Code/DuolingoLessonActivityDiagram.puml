@@ -1,0 +1,18 @@
+@startuml LessonFeaturesActivity
+start
+:User selects a course;
+:Check lesson availability;
+if (Lessons available?) then (Yes)
+    :Load lesson details;
+    :Initialize exercises;
+    :Apply any active multipliers;
+    :Start lesson;
+    :User completes exercises;
+    :Calculate XP earned;
+    :Update course progress;
+else (No)
+    :Notify user of no lessons available;
+endif
+stop
+@enduml
+

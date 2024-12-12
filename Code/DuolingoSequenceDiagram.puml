@@ -1,0 +1,103 @@
+@startuml
+
+actor User
+
+User -> MainPage : Open App
+activate MainPage
+
+MainPage -> MainPage : Display dashboard
+
+alt Navigate to Profile
+    User -> ProfilePage : Click "Profile"
+    activate ProfilePage
+    ProfilePage -> ProfilePage : View or edit user profile
+    ProfilePage -> MainPage : Return to Main Page
+    deactivate ProfilePage
+end
+
+alt Navigate to Daily Challenges
+    User -> ChallengePage : Click "Daily Challenges"
+    activate ChallengePage
+    ChallengePage -> ChallengePage : View daily challenges
+    alt Switch to Badges Tab
+        User -> BadgesPage : Click "Badges Tab"
+        activate BadgesPage
+        BadgesPage -> BadgesPage : View badges
+        BadgesPage -> ChallengePage : Return to Challenges Tab
+        deactivate BadgesPage
+    end
+    ChallengePage -> MainPage : Return to Main Page
+    deactivate ChallengePage
+end
+
+alt Navigate to Practice Hub
+    User -> PracticeHub : Click "Practice Hub"
+    activate PracticeHub
+    PracticeHub -> PracticeHub : Access practice exercises
+    PracticeHub -> MainPage : Return to Main Page
+    deactivate PracticeHub
+end
+
+alt Navigate to Leaderboard
+    User -> Leaderboard : Click "Leaderboard"
+    activate Leaderboard
+    Leaderboard -> Leaderboard : View leaderboard (25-30 users)
+    alt Click on a Profile
+        User -> ProfilePage : View User Profile
+        activate ProfilePage
+        ProfilePage -> Leaderboard : Return to Leaderboard
+        deactivate ProfilePage
+    end
+    Leaderboard -> MainPage : Return to Main Page
+    deactivate Leaderboard
+end
+
+alt Switch Courses
+    User -> MainPage : Click "Switch Courses"
+    MainPage -> MainPage : Switch between courses
+end
+
+alt Check Streaks
+    User -> StreaksPage : Click "Streaks"
+    activate StreaksPage
+    StreaksPage -> StreaksPage : View personal and friends' streaks
+    StreaksPage -> MainPage : Return to Main Page
+    deactivate StreaksPage
+end
+
+alt Check Premium Status
+    User -> PremiumStatus : Click "Premium Status"
+    activate PremiumStatus
+    PremiumStatus -> PremiumStatus : Check Super/Max benefits
+    PremiumStatus -> MainPage : Return to Main Page
+    deactivate PremiumStatus
+end
+
+alt Access Special Lessons
+    User -> SpecialLessons : Click "Special Lessons"
+    activate SpecialLessons
+    SpecialLessons -> SpecialLessons : Practice voice lessons or alternate scripts
+    SpecialLessons -> MainPage : Return to Main Page
+    deactivate SpecialLessons
+end
+
+alt Access Friends Feed
+    User -> FriendsFeed : Click "Friends Feed"
+    activate FriendsFeed
+    FriendsFeed -> FriendsFeed : Display posts from friends
+    alt Interact with Post
+        User -> FriendsFeed : Respond, react, or comment
+    end
+    alt View Friend Profile
+        User -> ProfilePage : Click on Profile
+        activate ProfilePage
+        ProfilePage -> FriendsFeed : Return to Friends Feed
+        deactivate ProfilePage
+    end
+    FriendsFeed -> MainPage : Return to Main Page
+    deactivate FriendsFeed
+end
+
+deactivate MainPage
+
+@enduml

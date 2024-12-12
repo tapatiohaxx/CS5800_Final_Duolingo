@@ -1,0 +1,381 @@
+@startuml
+
+class UserProfile {
+     String userName
+     String profileUserName
+     Boolean isMax
+     Boolean isSuper
+     int following
+     int followers
+     int gems
+     int totalXP
+     int dayStreak
+     int userID
+     League currentLeague
+     Achievement[] achievementsList
+     Friend[] friendsList
+     FriendStreak[] friendStreak
+     Course[] courses
+     Leaderboard currentLeaderboard
+     List<StreakFreeze> streakFreezes
+     MultiplierType currentMultiplier
+     int multiplierDuration
+
+     + getUserName(): String
+     + setUserName(String userName)
+     + getProfileUserName(): String
+     + setProfileUserName(String profileUserName)
+     + isMax(): Boolean
+     + setMax(Boolean isMax)
+     + isSuper(): Boolean
+     + setSuper(Boolean isSuper)
+     + getFollowing(): int
+     + setFollowing(int following)
+     + getFollowers(): int
+     + setFollowers(int followers)
+     + getGems(): int
+     + setGems(int gems)
+     + getTotalXP(): int
+     + setTotalXP(int totalXP)
+     + getDayStreak(): int
+     + setDayStreak(int dayStreak)
+     + getUserID(): int
+     + setUserID(int userID)
+     + getCurrentLeague(): League
+     + setCurrentLeague(League currentLeague)
+     + getAchievementsList(): Achievement[]
+     + setAchievementsList(Achievement[] achievementsList)
+     + getFriendsList(): Friend[]
+     + setFriendsList(Friend[] friendsList)
+     + getFriendStreak(): FriendStreak[]
+     + setFriendStreak(FriendStreak[] friendStreak)
+     + getCourses(): Course[]
+     + setCourses(Course[] courses)
+     + getCurrentLeaderboard(): Leaderboard
+     + setCurrentLeaderboard(Leaderboard currentLeaderboard)
+     + syncWithServer(ServerSync syncManager): void
+     + shareExercise(Lesson lesson, FriendsFeed feed): void
+     + hasStreakFreeze(): boolean
+     + getStreakFreezeAmount(): int
+     + getMultiplierTimeRemaining(): double
+     + setMultiplierDuration(double extraTime)
+     + getCurrentMultiplierType(): MultiplierType
+     }
+
+class User {
+    int userID
+    String userName
+
+    + getUserID(): int
+    + setUserID(int userID)
+    + getUserName(): String
+    + setUserName(String userName)
+}
+
+class Course {
+    String courseName
+    String originalLanguage
+    String targetLanguage
+    int currentXP
+    int classScore
+    int numUnits
+    int currentPosition
+    Boolean hasSpeakingExercises
+    Boolean hasStories
+    Boolean hasVideoCalls
+    Boolean hasAdventures
+    Alphabet alphabet
+    PracticeHub practiceHub
+    Unit[] units
+
+    + getCourseName(): String
+    + setCourseName(String courseName)
+    + getOriginalLanguage(): String
+    + setOriginalLanguage(String originalLanguage)
+    + getTargetLanguage(): String
+    + setTargetLanguage(String targetLanguage)
+    + getCurrentXP(): int
+    + setCurrentXP(int currentXP)
+    + getClassScore(): int
+    + setClassScore(int classScore)
+    + getNumUnits(): int
+    + setNumUnits(int numUnits)
+    + getCurrentPosition(): int
+    + setCurrentPosition(int currentPosition)
+    + hasSpeakingExercises(): Boolean
+    + setSpeakingExercises(Boolean hasSpeakingExercises)
+    + hasStories(): Boolean
+    + setStories(Boolean hasStories)
+    + hasVideoCalls(): Boolean
+    + setVideoCalls(Boolean hasVideoCalls)
+    + hasAdventures(): Boolean
+    + setAdventures(Boolean hasAdventures)
+    + getAlphabet(): Alphabet
+    + setAlphabet(Alphabet alphabet)
+    + getPracticeHub(): PracticeHub
+    + setPracticeHub(PracticeHub practiceHub)
+    + getUnits(): Unit[]
+    + setUnits(Unit[] units)
+}
+
+class PointMultiplier {
+    double multiplierValue
+
+    + getMultiplierValue(): double
+    + setMultiplierValue(double multiplierValue)
+}
+class PremiumDuolingo {
+    Boolean infiniteMistakes
+    String specialAppIcon
+
+    + hasInfiniteMistakes(): Boolean
+    + setInfiniteMistakes(Boolean infiniteMistakes)
+    + getSpecialAppIcon(): String
+    + setSpecialAppIcon(String specialAppIcon)
+}
+
+enum Alphabet {
+    LATIN
+    LATIN_MODIFIED
+    GREEK
+    THAI
+    HINDI
+    BANGLA
+    TAMIL
+    MANDARIN
+    JAPANESE
+    KOREAN
+    RUSSIAN
+}
+
+enum Language{
+     // Common languages
+        Arabic
+        Chinese
+        Czech
+        Danish
+        Dutch
+        Esperanto
+        Finnish
+        French
+        German
+        Greek
+        Haitian_Creole
+        Hawaiian
+        Hebrew
+        High_Valyrian
+        Hindi
+        Hungarian
+        Indonesian
+        Irish
+        Italian
+        Japanese
+        Klingon
+        Korean
+        Latin
+        Navajo
+        Norwegian
+        Polish
+        Portuguese
+        Romanian
+        Russian
+        Scottish_Gaelic
+        Spanish
+        Swahili
+        Swedish
+        Turkish
+        Ukrainian
+        Vietnamese
+        Welsh
+        Yiddish
+        Zulu
+        English_from_Arabic
+        English_from_Bengali
+        English_from_Chinese
+        English_from_Czech
+        English_from_Dutch
+        English_from_French
+        English_from_German
+        English_from_Greek
+        English_from_Hindi
+        English_from_Hungarian
+        English_from_Indonesian
+        English_from_Italian
+        English_from_Japanese
+        English_from_Korean
+        English_from_Polish
+        English_from_Portuguese
+        English_from_Romanian
+        English_from_Russian
+        English_from_Spanish
+        English_from_Swedish
+        English_from_Tagalog
+        English_from_Telugu
+        English_from_Thai
+        English_from_Turkish
+        English_from_Ukrainian
+        English_from_Vietnamese
+        Catalan_from_Spanish
+        Cantonese_from_Mandarin
+        French_from_Arabic
+        French_from_Dutch
+        French_from_German
+        French_from_Greek
+        French_from_Hindi
+        French_from_Hungarian
+        French_from_Indonesian
+        French_from_Italian
+        French_from_Japanese
+        French_from_Korean
+        French_from_Mandarin
+        French_from_Polish
+        French_from_Portuguese
+        French_from_Romanian
+        French_from_Russian
+        French_from_Spanish
+        French_from_Swedish
+        French_from_Ukrainian
+        German_from_Arabic
+        German_from_Dutch
+        German_from_French
+        German_from_Hungarian
+        German_from_Italian
+        German_from_Portuguese
+        German_from_Russian
+        German_from_Spanish
+        German_from_Turkish
+        Italian_from_French
+        Italian_from_German
+        Italian_from_Mandarin
+        Italian_from_Portuguese
+        Italian_from_Spanish
+        Japanese_from_Mandarin
+        Korean_from_Japanese
+        Korean_from_Mandarin
+        Portuguese_from_French
+        Portuguese_from_Spanish
+        Russian_from_Spanish
+        Russian_from_Turkish
+        Spanish_from_Arabic
+        Spanish_from_Bengali
+        Spanish_from_Czech
+        Spanish_from_French
+        Spanish_from_German
+        Spanish_from_Greek
+        Spanish_from_Hindi
+        Spanish_from_Indonesian
+        Spanish_from_Italian
+        Spanish_from_Japanese
+        Spanish_from_Korean
+        Spanish_from_Mandarin
+        Spanish_from_Polish
+        Spanish_from_Portuguese
+        Spanish_from_Romanian
+        Spanish_from_Russian
+        Spanish_from_Swedish
+        Spanish_from_Tagalog
+        Spanish_from_Telugu
+        Spanish_from_Thai
+        Spanish_from_Turkish
+        Spanish_from_Ukrainian
+        Spanish_from_Vietnamese
+        Swedish_from_Arabic
+        Swedish_from_Spanish
+    }
+enum LessonType {
+    STORY
+    STANDARD_LESSON
+    PODCAST
+    VIDEO_CALL
+    ADVENTURE
+}
+
+enum PracticeHubLessonType {
+    LISTENING
+    FLASHCARDS
+    PAST_MISTAKES
+    STORY
+}
+
+class StreakFreeze {
+    Boolean isActive
+
+    + activate(): void
+    + deactivate(): void
+    + isActive(): Boolean
+}
+
+enum ExerciseType {
+    SPEAKING
+    LISTENING
+    TRANSLATE_TO_TARGET
+    TRANSLATE_FROM_TARGET
+    FILL_BLANK
+    FREE_RESPONSE
+}
+
+enum MultiplierTypes {
+1.5x
+2x
+3x
+}
+
+class Unit {
+    int unitNumber
+    int numberOfModules
+
+    + getUnitNumber(): int
+    + setUnitNumber(int unitNumber)
+    + getNumberOfModules(): int
+    + setNumberOfModules(int numberOfModules)
+}
+
+class Lesson {
+    String lessonTitle
+    LessonType lessonType
+    ExerciseType[] exercises
+    Boolean hasMultiplier
+    PointMultiplier multiplierType
+
+    + getLessonTitle(): String
+    + setLessonTitle(String lessonTitle)
+    + getLessonType(): LessonType
+    + setLessonType(LessonType lessonType)
+    + getExercises(): ExerciseType[]
+    + setExercises(ExerciseType[] exercises)
+    + hasMultiplier(): Boolean
+    + setHasMultiplier(Boolean hasMultiplier)
+    + getMultiplierType(): PointMultiplier
+    + setMultiplierType(PointMultiplier multiplierType)
+    + applyMultiplier(int baseXP): int
+}
+
+interface Factory {
+    + createLesson(String lessonTitle, LessonType lessonType): Lesson
+    + createUnit(int unitNumber, int numberOfModules): Unit
+    + createCourse(String courseName, String originalLanguage, String targetLanguage): Course
+}
+
+class StandardFactory implements Factory {
+    + createLesson(String lessonTitle, LessonType lessonType): Lesson
+    + createUnit(int unitNumber, int numberOfModules): Unit
+    + createCourse(String courseName, String originalLanguage, String targetLanguage): Course
+}
+
+interface ServerSync {
+    + fetchData(): void
+    + uploadData(): void
+}
+
+class ServerSyncManager implements ServerSync {
+    + fetchData(): void
+    + uploadData(): void
+}
+
+Course *-- Unit
+Unit *-- Lesson
+PracticeHub *-- Lesson
+UserProfile --* StreakFreeze
+PremiumDuolingo *-- UserProfile
+PointMultiplier *-- UserProfile
+@enduml

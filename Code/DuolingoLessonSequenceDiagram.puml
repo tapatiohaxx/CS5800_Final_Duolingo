@@ -1,0 +1,15 @@
+@startuml LessonFeaturesSequence
+participant User
+participant Course
+participant Lesson
+participant Exercise
+participant XPManager
+
+User -> Course: selectLesson()
+Course -> Lesson: getLessonDetails()
+Lesson -> Exercise: initializeExercises()
+User -> Exercise: startExercise()
+Exercise -> XPManager: calculateXP()
+XPManager -> Course: updateCourseProgress()
+Course -> User: returnUpdatedProgress()
+@enduml

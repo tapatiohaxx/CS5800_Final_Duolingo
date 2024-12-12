@@ -1,0 +1,16 @@
+@startuml SocialFeaturesActivity
+start
+:User opens social feed;
+:Load friend activities;
+if (New activities available?) then (Yes)
+    :Display new friend activities;
+    :Allow user to interact (like, comment);
+else (No)
+    :Do NOTHING;
+    :Allow User to interact with previous Activities;
+endif
+:User interacts with a post (User can share post externally, reply with an emoji, or add  a comment);
+
+:Update friend's activity log;
+stop
+@enduml

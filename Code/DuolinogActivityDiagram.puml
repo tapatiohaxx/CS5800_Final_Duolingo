@@ -1,0 +1,85 @@
+@startuml
+
+start
+
+:User opens the app;
+
+if (Main Page?) then (yes)
+    :Display main dashboard;
+    if (Click "Profile") then (yes)
+        :Navigate to Profile Page;
+        :View or edit user profile;
+        :back to Main Page;
+    else (no)
+        if (Click "Daily Challenges") then (yes)
+            :Navigate to Challenge Page;
+            if (Switch to Badges Tab?) then (yes)
+                :Navigate to Badges Page;
+                :View badges;
+                :back to Challenge Page;
+            else (no)
+                :back to Main Page;
+            endif
+        else (no)
+            if (Click "Practice Hub") then (yes)
+                :Navigate to Practice Hub;
+                :Access practice exercises;
+                :back to Main Page;
+            else (no)
+                if (Click "Leaderboard") then (yes)
+                    :Navigate to Leaderboard;
+                    :View leaderboard of 25-30 users;
+                    if (Click on Profile?) then (yes)
+                        :Navigate to User Profile;
+                        :back to Leaderboard;
+                    else (no)
+                        :back to Main Page;
+                    endif
+                else (no)
+                    if (Click "Switch Courses") then (yes)
+                        :Switch between courses;
+                        :back to Main Page;
+                    else (no)
+                        if (Click "Streaks") then (yes)
+                            :Navigate to Streaks Page;
+                            :View personal and friends' streaks;
+                            :back to Main Page;
+                        else (no)
+                            if (Click "Premium Status") then (yes)
+                                :Navigate to Premium Status;
+                                :Check Super/Max benefits;
+                                :back to Main Page;
+                            else (no)
+                                if (Click "Special Lessons") then (yes)
+                                    :Navigate to Special Lessons;
+                                    :Practice voice lessons or alternate scripts;
+                                    :back to Main Page;
+                                else (no)
+                                    if (Click "Friends Feed") then (yes)
+                                        :Navigate to Friends Feed;
+                                        if (Click on Post?) then (yes)
+                                            :Respond or react to post;
+                                        else (no)
+                                            if (Click on Profile?) then (yes)
+                                                :Navigate to User Profile;
+                                                :back to Friends Feed;
+                                            else (no)
+                                                :back to Main Page;
+                                            endif
+                                        endif
+                                    else (no)
+                                        stop
+                                    endif
+                                endif
+                            endif
+                        endif
+                    endif
+                endif
+            endif
+        endif
+    endif
+else (no)
+    stop
+endif
+
+@enduml

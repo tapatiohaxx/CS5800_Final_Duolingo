@@ -1,0 +1,138 @@
+@startuml
+class UserProfile {
+     String userName
+     String profileUserName
+     Boolean isMax
+     Boolean isSuper
+     int following
+     int followers
+     int gems
+     int totalXP
+     int dayStreak
+     int userID
+     League currentLeague
+     Achievement[] achievementsList
+     Friend[] friendsList
+     FriendStreak[] friendStreak
+     Course[] courses
+     Leaderboard currentLeaderboard
+     List<StreakFreeze> streakFreezes
+     MultiplierType currentMultiplier
+     int multiplierDuration
+
+     + getUserName(): String
+     + setUserName(String userName)
+     + getProfileUserName(): String
+     + setProfileUserName(String profileUserName)
+     + isMax(): Boolean
+     + setMax(Boolean isMax)
+     + isSuper(): Boolean
+     + setSuper(Boolean isSuper)
+     + getFollowing(): int
+     + setFollowing(int following)
+     + getFollowers(): int
+     + setFollowers(int followers)
+     + getGems(): int
+     + setGems(int gems)
+     + getTotalXP(): int
+     + setTotalXP(int totalXP)
+     + getDayStreak(): int
+     + setDayStreak(int dayStreak)
+     + getUserID(): int
+     + setUserID(int userID)
+     + getCurrentLeague(): League
+     + setCurrentLeague(League currentLeague)
+     + getAchievementsList(): Achievement[]
+     + setAchievementsList(Achievement[] achievementsList)
+     + getFriendsList(): Friend[]
+     + setFriendsList(Friend[] friendsList)
+     + getFriendStreak(): FriendStreak[]
+     + setFriendStreak(FriendStreak[] friendStreak)
+     + getCourses(): Course[]
+     + setCourses(Course[] courses)
+     + getCurrentLeaderboard(): Leaderboard
+     + setCurrentLeaderboard(Leaderboard currentLeaderboard)
+     + syncWithServer(ServerSync syncManager): void
+     + shareExercise(Lesson lesson, FriendsFeed feed): void
+     + hasStreakFreeze(): boolean
+     + getStreakFreezeAmount(): int
+     + getMultiplierTimeRemaining(): double
+     + setMultiplierDuration(double extraTime)
+     + getCurrentMultiplierType(): MultiplierType
+     }
+
+class User {
+    int userID
+    String userName
+
+    + getUserID(): int
+    + setUserID(int userID)
+    + getUserName(): String
+    + setUserName(String userName)
+}
+
+interface ServerSync {
+    + fetchData(): void
+    + uploadData(): void
+}
+
+class ServerSyncManager implements ServerSync {
+    + fetchData(): void
+    + uploadData(): void
+}
+
+class Friend {
+    int userID
+    UserProfile profile
+
+    + getUserID(): int
+    + setUserID(int userID)
+    + getProfile(): UserProfile
+    + setProfile(UserProfile profile)
+}
+
+class FriendStreak {
+    Friend friend
+    int streakDays
+
+    + getFriend(): Friend
+    + setFriend(Friend friend)
+    + getStreakDays(): int
+    + setStreakDays(int streakDays)
+}
+
+class FriendActivity {
+    String post
+    UserProfile friendProfile
+    String[] emojis
+    Boolean canAddComments
+    String[] comments
+
+    + getPost(): String
+    + setPost(String post)
+    + getFriendProfile(): UserProfile
+    + setFriendProfile(UserProfile friendProfile)
+    + getEmojis(): String[]
+    + setEmojis(String[] emojis)
+    + addEmoji(String emoji): void
+    + getComments(): String[]
+    + addComment(String comment): void
+    + canAddComments(): Boolean
+    + setCanAddComments(Boolean canAddComments)
+}
+
+class FriendsFeed {
+    FriendActivity[] activities
+
+    + getFriendsActivities(): FriendActivity[]
+    + addActivity(FriendActivity activity): void
+}
+
+UserProfile *-- Friend
+UserProfile *-- FriendStreak
+UserProfile *-- FriendsFeed
+FriendsFeed *-- FriendActivity
+FriendActivity *-- UserProfile
+FriendStreak *-- Friend
+
+@enduml

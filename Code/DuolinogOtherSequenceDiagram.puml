@@ -1,0 +1,22 @@
+@startuml OtherFeaturesSequence
+participant User
+participant GemStore
+participant Leaderboard
+participant UserProfile
+participant PaymentProcessor
+
+User -> GemStore: openGemStore()
+GemStore -> User: displayPackages()
+User -> PaymentProcessor: purchasePackage()
+PaymentProcessor -> GemStore: confirmPurchase()
+GemStore -> User: updateGems()
+
+User -> Leaderboard: openLeaderboard()
+Leaderboard -> User: displayTopUsers()
+User -> Leaderboard: selectUserProfile()
+Leaderboard -> UserProfile: loadUserProfile()
+UserProfile -> User: displayProfile()
+
+User -> UserProfile: viewOwnProfile()
+UserProfile -> User: displayOwnProfile()
+@enduml
